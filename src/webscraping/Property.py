@@ -23,7 +23,7 @@ class Property():
   # Method to get property location
   def getLocation(self):
     location = self.propertyCard.find('span', attrs={'class': 'property-card__address'})
-    return self.trimStr(location.text.split(',')[-1]) if location != None else "--"
+    return self.trimStr(location.text) if location != None else "--"
 
   # Method to get property area
   def getArea(self):
