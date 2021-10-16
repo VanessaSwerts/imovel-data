@@ -59,19 +59,19 @@ class Vivareal():
     return allCityProperties 
 
   # Transform data to dataframe and save as csv
-  def saveData(self, data):
+  def saveData(self, data, fileName):
     print("Saving as csv...")
     df = pd.DataFrame(data)
-    df.to_csv(f'{os.getcwd()}/src/datasets/vivareal.csv', index = False, header=True)
+    df.to_csv(f'{os.getcwd()}/src/datasets/{fileName}', index = False, header=True)
     print("Done")
 
   # Get all properties from vivareal website
   # cities: array that contains all cities to get the properties
-  def getAllProperties(self, cities):
+  def getAllProperties(self, cities, fileName):
     properties = []
 
     for city in cities:
       properties.extend(self.getPropertiesByCity(city))
-      self.saveData(properties)
+      self.saveData(properties, fileName)
 
     return properties

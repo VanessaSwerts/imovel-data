@@ -10,4 +10,4 @@ cities = [
   "passos"
 ]
 
-properties = Vivareal().getAllProperties(cities)
+properties = Vivareal().getAllProperties(cities, "vivareal.csv")
