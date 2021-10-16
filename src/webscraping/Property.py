@@ -8,7 +8,8 @@ class Property():
   # Remove initial and final spaces from a string
   # str: string to remove the spaces
   def trimStr(self, str):
-    return str.rstrip().lstrip()
+    print(str)
+    return str.rstrip().lstrip() if "--" not in str else None
 
   # Method to get property id
   def getId(self):
@@ -18,42 +19,42 @@ class Property():
   # Method to get property type
   def getType(self):
     type = self.propertyCard.find('h2', attrs={'class': 'property-card__header'}).span
-    return self.trimStr(type.text.split()[0]) if type != None else "--"
+    return self.trimStr(type.text.split()[0]) if type != None else None
 
   # Method to get property location
   def getLocation(self):
     location = self.propertyCard.find('span', attrs={'class': 'property-card__address'})
-    return self.trimStr(location.text) if location != None else "--"
+    return self.trimStr(location.text) if location != None else None
 
   # Method to get property area
   def getArea(self):
     area = self.propertyCard.find('li', attrs={'class': 'property-card__detail-area'}).span
-    return self.trimStr(area.text) if area != None else "--"
+    return self.trimStr(area.text) if area != None else None
 
   # Method to get property bedrooms
   def getBedrooms(self):
     bedroom = self.propertyCard.find('li', attrs={'class': 'property-card__detail-room'}).span
-    return self.trimStr(bedroom.text) if bedroom != None else "--"
+    return self.trimStr(bedroom.text) if bedroom != None else None
 
   # Method to get property bathrooms
   def getBathrooms(self):
     bathroom = self.propertyCard.find('li', attrs={'class': 'property-card__detail-bathroom'}).span
-    return self.trimStr(bathroom.text) if bathroom != None else "--"
+    return self.trimStr(bathroom.text) if bathroom != None else None
 
   # Method to get property garage
   def getGarage(self):
     garage = self.propertyCard.find('li', attrs={'class': 'property-card__detail-garage'}).span
-    return self.trimStr(garage.text) if garage != None else "--"
+    return self.trimStr(garage.text) if garage != None else None
 
   # Method to get property condominium value
   def getCondominium(self):
     condominium = self.propertyCard.find('strong', attrs={'class': 'js-condo-price'})
-    return self.trimStr(condominium.text) if condominium != None else "--"
+    return self.trimStr(condominium.text) if condominium != None else None
 
   # Method to get property price
   def getPrice(self):
     price = self.propertyCard.find('div', attrs={'class': 'property-card__price'}).p
-    return self.trimStr(price.text) if price != None else "--"
+    return self.trimStr(price.text) if price != None else None
 
   # Extract information about each property
   def extractPropertyInfo(self):
