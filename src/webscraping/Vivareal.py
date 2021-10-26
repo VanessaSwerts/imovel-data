@@ -5,7 +5,6 @@ import pandas as pd
 import os
 
 class Vivareal():
-  
   # Get all properties in one specfic page
   # pageContet: page content found
   def getPageProperties(self, pageContent):
@@ -15,7 +14,8 @@ class Vivareal():
 
     for card in cardProperties:
       property = Property(card).extractPropertyInfo()
-      properties.append(property)        
+      properties.append(property)  
+      print(property)      
 
     print(f'{len(properties)} properties found')
 
@@ -30,31 +30,30 @@ class Vivareal():
     finalPage = False
     pageNumber = 1
     allCityProperties = []
+    
+    webDriver = Extractor().getChromeDriver()
+    webDriver.get(pageUrl)
 
-    driver = Extractor().getChromeDriver()
-    
-    driver.get(pageUrl)
-    
     while(finalPage == False):
       print(f'getting from page {pageNumber}')
 
       time.sleep(5)
 
-      page = driver.execute_script("return document.body.innerHTML")
+      page = webDriver.execute_script("return document.body.innerHTML")
       pageContent = Extractor().getPageContent(page)
 
       allCityProperties.extend(self.getPageProperties(pageContent))
 
       nextPageButton = pageContent.find('a', attrs={'title': 'Próxima página'})
       if(nextPageButton != None and nextPageButton['href'].split('=')[-1] != ''):
-        nextPageButtonSelenium = driver.find_element_by_xpath("//a[@title='Próxima página']")
-        driver.execute_script("arguments[0].click()", nextPageButtonSelenium)
+        nextPageButtonSelenium = webDriver.find_element_by_xpath("//a[@title='Próxima página']")
+        webDriver.execute_script("arguments[0].click()", nextPageButtonSelenium)
       else:
         finalPage = True
 
       pageNumber = pageNumber + 1
 
-    driver.quit()
+    webDriver.quit()
 
     return allCityProperties 
 

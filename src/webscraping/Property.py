@@ -1,3 +1,6 @@
+import time
+from Extractor import Extractor
+from Utils import getElementXPath
 class Property():
   
   # Constructor
@@ -8,7 +11,6 @@ class Property():
   # Remove initial and final spaces from a string
   # str: string to remove the spaces
   def trimStr(self, str):
-    print(str)
     return str.rstrip().lstrip() if "--" not in str else None
 
   # Method to get property id
@@ -67,5 +69,5 @@ class Property():
       'bathroom': self.getBathrooms(),
       'garage': self.getGarage(),
       'condominium': self.getCondominium(),
-      'price': self.getPrice()  
+      'price': self.getPrice()
     }
